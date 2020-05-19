@@ -7,16 +7,13 @@
     <original-package android:name="com.cyanogenmod.settings.device" />
 
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+    <uses-permission android:name="android.permission.MODIFY_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
 
     <protected-broadcast android:name="com.android.systemui.doze.pulse" />
-
-    <uses-sdk
-        android:minSdkVersion="27"
-        android:targetSdkVersion="27" />
 
     <application
         android:allowBackup="true"
@@ -39,7 +36,6 @@
         <receiver android:name="com.moto.actions.BootCompletedReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.PRE_BOOT_COMPLETED" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
@@ -72,6 +68,9 @@
                 android:name="com.android.settings.category"
                 android:value="com.android.settings.category.ia.homepage" />
             <meta-data
+                android:name="com.android.settings.bg.hint"
+                android:resource="@color/homepage_moto_background" /> 
+	    <meta-data
                 android:name="com.android.settings.icon"
                 android:resource="@drawable/ic_settings_gestures_dashboard" />
             <meta-data
@@ -82,19 +81,15 @@
         <activity
             android:name=".GestureSettingsActivity"
             android:label="@string/device_gestures_title"
-            android:theme="@style/MotoActions">
+            android:theme="@style/MotoActions"
+            android:exported="true">
         </activity>
 
         <activity
             android:name=".FPGestureSettingsActivity"
             android:label="@string/fingerprint_gestures_title"
-            android:theme="@style/MotoActions">
-        </activity>
-
-        <activity
-            android:name=".ScreenOffGestureSettingsActivity"
-            android:label="@string/screen_off_gestures_title"
-            android:theme="@style/MotoActions">
+            android:theme="@style/MotoActions"
+            android:exported="true">
         </activity>
 
     </application>
